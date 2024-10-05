@@ -1,6 +1,10 @@
 import './style/style.scss'
 import {useState} from "react";
 
+import car from '../../assets/car.svg';
+import duck from '../../assets/duck.png';
+import calendar from '../../assets/calendar.svg';
+
 function Home() {
     const [isPressBurger, setIsPressBurger] = useState(false);
 
@@ -40,7 +44,7 @@ function Home() {
                                 <button className='book-button' style={{display: 'flex'}}>Бронюй</button>
                             </div>
                             <div className='ellipse'>
-                                <img className='main-logo' src='../../public/duck.png'/>
+                                <img className='main-logo' src={duck} alt='logo'/>
                             </div>
                         </div>
                     </div>
