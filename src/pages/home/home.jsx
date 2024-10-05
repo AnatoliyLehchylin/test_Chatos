@@ -4,6 +4,15 @@ import {useState} from "react";
 import car from '../../assets/car.svg';
 import duck from '../../assets/duck.png';
 import calendar from '../../assets/calendar.svg';
+import arrow from '../../assets/arrow-left.svg';
+import carbon from '../../assets/carbon_location.svg';
+import phone from '../../assets/phone.svg';
+import status from '../../assets/status.svg';
+import burger from '../../assets/Burger.png';
+import vector1 from '../../assets/Vector 1.png';
+import vector2 from '../../assets/Vector 2.png';
+import logoMobile from '../../assets/LogoMobile.png';
+import bus from '../../assets/bus.png';
 
 function Home() {
     const [isPressBurger, setIsPressBurger] = useState(false);
@@ -62,22 +71,22 @@ function Home() {
                             <div className='navbar'>
                                 <div className='item-wrapp'>
                                     <p>Звідки?</p>
-                                    <img src='../../public/arrow-left.svg'/>
+                                    <img src={arrow}/>
                                 </div>
                                 <div className='item-wrapp'>
                                     <p>Куди?</p>
-                                    <img src='../../public/arrow-left.svg'/>
+                                    <img src={arrow}/>
                                 </div>
                                 <div className='item-wrapp'>
                                     <div className='calendar'>
-                                        <img src='../../public/calendar.svg'/>
+                                        <img src={calendar}/>
                                         <p>Коли?</p>
                                     </div>
-                                    <img src='../../public/arrow-left.svg'/>
+                                    <img src={arrow}/>
                                 </div>
                                 <div className='item-wrapp'>
                                     <p>1 пасажир</p>
-                                    <img src='../../public/arrow-left.svg'/>
+                                    <img src={arrow}/>
                                 </div>
                             </div>
                             <button className='book-button go' style={{display: 'flex'}}>Поїхали</button>
@@ -95,25 +104,25 @@ function Home() {
                                 <button>Дізнатись більше</button>
                             </div>
                             <div className='fishki-item'>
-                                <img src='../../public/carbon_location.svg'/>
+                                <img src={carbon}/>
                                 <h4>Доступ до місцязнаходження водія</h4>
                                 <p>Слідкуй за актуальною локацією водія та завжди будь в курсі де зараз Твій бус або
                                     відправлена Тобою посилка. Ми не Uber, але теж круто!</p>
                             </div>
                             <div className='fishki-item'>
-                                <img src='../../public/phone.svg'/>
+                                <img src={phone}/>
                                 <h4>Онлайн бронювання у додатку</h4>
                                 <p>Швидке бронювання онлайн!
                                     Забудь про сотні дзвінків перед поїздкою!</p>
                             </div>
                             <div className='fishki-item'>
-                                <img src='../../public/status.svg'/>
+                                <img src={status}/>
                                 <h4>Статус поїздки</h4>
                                 <p>Додаток нагадає про поїздку та повідомить тебе, як тільки водій вирушить в
                                     дорогу!</p>
                             </div>
                             <div className='fishki-item'>
-                                <img src='../../public/car.svg'/>
+                                <img src={car}/>
                                 <h4>Відстеження поїздок</h4>
                                 <p>Відправив посилку рідним? Відстежуй її у режимі онлайн</p>
                             </div>
@@ -127,8 +136,7 @@ function Home() {
             <div className='main-container-mobile'>
                 <div className='header-mobile'>
                     <div className='header-top-menu'>
-                        <img src='../../public/duck.png'/>
-                        {/*<img src='../../public/Burger.png' className='burger' onClick={burgerMenu}/>*/}
+                        <img src={duck}/>
                         {isPressBurger ? (
                             <div id='burger'>
                                 <button className='burger-button'>Головна</button>
@@ -136,7 +144,7 @@ function Home() {
                                 <button className='burger-button'>Рейси</button>
                                 <button className='burger-button'>Допомога</button>
                             </div>
-                        ) : <img src='../../public/Burger.png' className='burger' onClick={burgerMenu}/>}
+                        ) : <img src={burger} className='burger' onClick={burgerMenu}/>}
                     </div>
 
                     <p className='mobile-title'>YDC <span>Перевізники</span> Європи</p>
@@ -145,9 +153,9 @@ function Home() {
 
                 <div className='mobile-logo-wrapper'>
                     <div className="mobile-logo">
-                        <img src="../../public/Vector 1.png" className="vector1" alt="Logo1"/>
-                        <img src="../../public/Vector 2.png" className="vector2" alt="Logo2"/>
-                        <img src="../../public/LogoMobile.png" className="logo-image" alt="Duck"/>
+                        <img src={vector1} className="vector1" alt="Logo1"/>
+                        <img src={vector2} className="vector2" alt="Logo2"/>
+                        <img src={logoMobile} className="logo-image" alt="Duck"/>
                     </div>
                 </div>
 
@@ -155,26 +163,26 @@ function Home() {
                     <div className='navbar-mobile'>
                         <div className='item-wrapp-mobile'>
                             <p>Звідки?</p>
-                            <img src='../../public/arrow-left.svg'/>
+                            <img src={arrow}/>
                         </div>
                         <div className='item-wrapp-mobile'>
                             <p>Куди?</p>
-                            <img src='../../public/arrow-left.svg'/>
+                            <img src={arrow}/>
                         </div>
                         <div className='item-wrapp-mobile'>
                             <p>Коли?</p>
-                            <img src='../../public/calendar.svg'/>
+                            <img src={calendar}/>
                         </div>
                         <div className='item-wrapp-mobile'>
                             <p>1 пасажир</p>
-                            <img src='../../public/arrow-left.svg'/>
+                            <img src={arrow}/>
                         </div>
                     </div>
                     <button className='button-mobile'>Поїхали</button>
                 </div>
 
                 <div className='main-mobile-fishka'>
-                    <img src='../../public/bus.png'/>
+                    <img src={bus}/>
                     <h2>YDC <span>- будь в курсі!</span></h2>
                     <h4>Доступ до місцязнаходження водія</h4>
                     <p>Слідкуй за актуальною локацією водія та завжди будь в курсі де зараз Твій бус або відправлена
@@ -183,7 +191,7 @@ function Home() {
                 </div>
 
                 <div className='mobile-fishka-item'>
-                    <img src='../../public/phone.svg'/>
+                    <img src={phone}/>
                     <div className='mobile-fishka-text-wrapp'>
                         <h3>Онлайн бронювання у додатку</h3>
                         <p>Швидке бронювання онлайн!<br/> Забудь про сотні дзвінків перед поїздкою!</p>
@@ -191,7 +199,7 @@ function Home() {
                 </div>
 
                 <div className='mobile-fishka-item'>
-                    <img src='../../public/status.svg'/>
+                    <img src={status}/>
                     <div>
                         <h3>Статус поїздки</h3>
                         <p>Додаток нагадає про поїздку та повідомить тебе, як тільки водій вирушить в дорогу!</p>
@@ -199,7 +207,7 @@ function Home() {
                 </div>
 
                 <div className='mobile-fishka-item' style={{marginBottom: '58px'}}>
-                    <img src='../../public/car.svg'/>
+                    <img src={car}/>
                     <div>
                         <h3>Відстеження поїздок</h3>
                         <p>Відправив посилку рідним?<br/>Відстежуй її у режимі онлайн</p>
