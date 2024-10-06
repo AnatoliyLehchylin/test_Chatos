@@ -1,5 +1,5 @@
 import './style/style.scss'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 import car from '../../assets/car.svg';
 import duck from '../../assets/duck.png';
@@ -55,17 +55,34 @@ function Home() {
         });
     };
 
-    document.addEventListener('click', e => {
-        if (e.target.parentElement.id !== 'burger') {
-            setIsPressBurger(false);
-        }
-    });
+    // document.addEventListener('click', e => {
+    //     if (e.target.parentElement.id !== 'burger') {
+    //         setIsPressBurger(false);
+    //     }
+    // });
+    //
+    // document.addEventListener('click', e => {
+    //     if (!e.target.closest('.navbar') && !e.target.closest('.navbar-mobile')) {
+    //         setShowInputs([false, false, false, false]);
+    //     }
+    // })
 
-    document.addEventListener('click', e => {
-        if (!e.target.closest('.navbar') && !e.target.closest('.navbar-mobile')) {
-            setShowInputs([false, false, false, false]);
-        }
-    })
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (!e.target.closest('.navbar') && !e.target.closest('.navbar-mobile')) {
+                setShowInputs([false, false, false, false]);
+            }
+            if (e.target.parentElement.id !== 'burger') {
+                setIsPressBurger(false);
+            }
+        };
+        document.addEventListener('click', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
+
 
     return (
         <>
