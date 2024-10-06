@@ -16,9 +16,17 @@ import bus from '../../assets/bus.png';
 
 function Home() {
     const [isPressBurger, setIsPressBurger] = useState(false);
+    const [isPassenger, setIsPassenger] = useState(true);
+
+    const [showInputs, setShowInputs] = useState([false, false, false, false]);
 
     const burgerMenu = () => {
         setIsPressBurger(true);
+    }
+
+    const toggleInputs = (index) => {
+        const updatedState = showInputs.map((_, i) => i === index);
+        setShowInputs(updatedState);
     }
 
     document.addEventListener('click', e => {
@@ -26,6 +34,12 @@ function Home() {
             setIsPressBurger(false);
         }
     });
+
+    document.addEventListener('click',e => {
+        if (!e.target.closest('.navbar') && !e.target.closest('.navbar-mobile')) {
+            setShowInputs([false, false, false, false]);
+        }
+    })
 
     return (
         <>
@@ -63,32 +77,57 @@ function Home() {
                     <div className='bottom-content'>
 
                         <div className='toggle-button-wrapp'>
-                            <button className='toggle-button'>Пасажир</button>
-                            <button className='toggle-button right'>Перевізник</button>
+                            <button className='toggle-button' style={{
+                                color: isPassenger ? '#FFF' : '#222',
+                                backgroundColor: isPassenger ? '#0D6EFD' : 'transparent'
+                            }} onClick={() => setIsPassenger(true)}>Пасажир
+                            </button>
+                            <button className='toggle-button right' style={{
+                                color: isPassenger ? '#222' : '#FFF',
+                                backgroundColor: isPassenger ? 'transparent' : '#0D6EFD'
+                            }} onClick={() => setIsPassenger(false)}>Перевізник
+                            </button>
                         </div>
 
                         <div className='navbar-wrapp'>
                             <div className='navbar'>
+
                                 <div className='item-wrapp'>
-                                    <p>Звідки?</p>
-                                    <img src={arrow} alt='arrow'/>
-                                </div>
-                                <div className='item-wrapp'>
-                                    <p>Куди?</p>
-                                    <img src={arrow} alt='arrow'/>
-                                </div>
-                                <div className='item-wrapp'>
-                                    <div className='calendar'>
-                                        <img src={calendar} alt='calendar'/>
-                                        <p>Коли?</p>
+                                    <div className='item'>
+                                        <p>Звідки?</p>
+                                        <img src={arrow} alt='arrow' onClick={() => toggleInputs(0)}/>
                                     </div>
-                                    <img src={arrow} alt='arrow'/>
+                                    {showInputs[0] && <input type='text' className='input' placeholder='Пункт відправлення' autoFocus={true}/>}
                                 </div>
+
                                 <div className='item-wrapp'>
-                                    <p>1 пасажир</p>
-                                    <img src={arrow} alt='arrow'/>
+                                    <div className='item'>
+                                        <p>Куди?</p>
+                                        <img src={arrow} alt='arrow' onClick={() => toggleInputs(1)}/>
+                                    </div>
+                                    {showInputs[1] && <input type='text' className='input' placeholder='Пункт призначення' autoFocus={true}/>}
+                                </div>
+
+                                <div className='item-wrapp'>
+                                    <div className='item'>
+                                        <div className='calendar'>
+                                            <img src={calendar} style={{cursor: 'default'}} alt='calendar'/>
+                                            <p>Коли?</p>
+                                        </div>
+                                        <img src={arrow} alt='arrow' onClick={() => toggleInputs(2)}/>
+                                    </div>
+                                    {showInputs[2] && <input type='text' className='input' placeholder='Дата відправлення' autoFocus={true}/>}
+                                </div>
+
+                                <div className='item-wrapp'>
+                                    <div className='item'>
+                                        <p>1 пасажир</p>
+                                        <img src={arrow} alt='arrow' onClick={() => toggleInputs(3)}/>
+                                    </div>
+                                    {showInputs[3] && <input type='text' className='input' placeholder='Кількість пасажирів' autoFocus={true}/>}
                                 </div>
                             </div>
+
                             <button className='book-button go' style={{display: 'flex'}}>Поїхали</button>
                         </div>
 
@@ -133,6 +172,8 @@ function Home() {
             </div>
 
 
+
+
             <div className='main-container-mobile'>
                 <div className='header-mobile'>
                     <div className='header-top-menu'>
@@ -161,23 +202,41 @@ function Home() {
 
                 <div className='navbar-wrapp-mobile'>
                     <div className='navbar-mobile'>
+
                         <div className='item-wrapp-mobile'>
-                            <p>Звідки?</p>
-                            <img src={arrow} alt='arrow'/>
+                            <div className='item-mobile'>
+                                <p>Звідки?</p>
+                                <img src={arrow} alt='arrow' onClick={() => toggleInputs(0)}/>
+                            </div>
+                            {showInputs[0] && <input type='text' className='input' placeholder='Пункт відправлення' autoFocus={true}/>}
                         </div>
+
                         <div className='item-wrapp-mobile'>
-                            <p>Куди?</p>
-                            <img src={arrow} alt='arrow'/>
+                            <div className='item-mobile'>
+                                <p>Куди?</p>
+                                <img src={arrow} alt='arrow' onClick={() => toggleInputs(1)}/>
+                            </div>
+                            {showInputs[1] && <input type='text' className='input' placeholder='Пункт призначення' autoFocus={true}/>}
                         </div>
+
                         <div className='item-wrapp-mobile'>
-                            <p>Коли?</p>
-                            <img src={calendar} alt='calendar'/>
+                            <div className='item-mobile'>
+                                <p>Коли?</p>
+                                <img src={calendar} alt='calendar' onClick={() => toggleInputs(2)}/>
+                            </div>
+                            {showInputs[2] && <input type='text' className='input' placeholder='Дата відправлення' autoFocus={true}/>}
                         </div>
+
                         <div className='item-wrapp-mobile'>
-                            <p>1 пасажир</p>
-                            <img src={arrow} alt='arrow'/>
+                            <div className='item-mobile'>
+                                <p>1 пасажир</p>
+                                <img src={arrow} alt='arrow' onClick={() => toggleInputs(3)}/>
+                            </div>
+                            {showInputs[3] && <input type='text' className='input' placeholder='Кількість пасажирів' autoFocus={true}/>}
                         </div>
+
                     </div>
+
                     <button className='button-mobile'>Поїхали</button>
                 </div>
 

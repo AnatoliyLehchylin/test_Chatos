@@ -160,26 +160,33 @@
     align-self: stretch;
 
     .item-wrapp-mobile {
-      width: 100%;
+      position: relative;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      width: 100%;
 
-      p {
-        color: #222;
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        margin: 0;
-      }
-
-      img {
-        cursor: pointer;
-      }
-
-      .calendar {
+      .item-mobile {
+        width: 100%;
         display: flex;
-        gap: 6px
+        justify-content: space-between;
+
+        p {
+          color: #222;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          margin: 0;
+        }
+
+        img {
+          cursor: pointer;
+        }
+
+        .calendar {
+          display: flex;
+          gap: 6px
+        }
       }
     }
   }
