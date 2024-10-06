@@ -20,14 +20,40 @@ function Home() {
 
     const [showInputs, setShowInputs] = useState([false, false, false, false]);
 
+    const [data, setData] = useState({
+        from: 'Звідки?',
+        to: 'Куди?',
+        date: 'Коли?',
+        passenger: '1'
+    });
+
     const burgerMenu = () => {
         setIsPressBurger(true);
     }
 
     const toggleInputs = (index) => {
-        const updatedState = showInputs.map((_, i) => i === index);
-        setShowInputs(updatedState);
-    }
+        setShowInputs((prevState) =>
+            prevState.map((isVisible, i) => (i === index ? !isVisible : false))
+        );
+    };
+
+
+    const handleInputChange = (event) => {
+        const {name, value} = event.target;
+        setData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
+    const resetData = () => {
+        setData({
+            from: 'Звідки?',
+            to: 'Куди?',
+            date: 'Коли?',
+            passenger: '1'
+        });
+    };
 
     document.addEventListener('click', e => {
         if (e.target.parentElement.id !== 'burger') {
@@ -35,7 +61,7 @@ function Home() {
         }
     });
 
-    document.addEventListener('click',e => {
+    document.addEventListener('click', e => {
         if (!e.target.closest('.navbar') && !e.target.closest('.navbar-mobile')) {
             setShowInputs([false, false, false, false]);
         }
@@ -94,41 +120,52 @@ function Home() {
 
                                 <div className='item-wrapp'>
                                     <div className='item'>
-                                        <p>Звідки?</p>
+                                        <p>{data.from}</p>
                                         <img src={arrow} alt='arrow' onClick={() => toggleInputs(0)}/>
                                     </div>
-                                    {showInputs[0] && <input type='text' className='input' placeholder='Пункт відправлення' autoFocus={true}/>}
+                                    {showInputs[0] &&
+                                        <input name='from' type='text' className='input'
+                                               placeholder='Пункт відправлення'
+                                               autoFocus={true} onChange={handleInputChange}/>}
                                 </div>
 
                                 <div className='item-wrapp'>
                                     <div className='item'>
-                                        <p>Куди?</p>
+                                        <p>{data.to}</p>
                                         <img src={arrow} alt='arrow' onClick={() => toggleInputs(1)}/>
                                     </div>
-                                    {showInputs[1] && <input type='text' className='input' placeholder='Пункт призначення' autoFocus={true}/>}
+                                    {showInputs[1] &&
+                                        <input type='text' name='to' className='input' placeholder='Пункт призначення'
+                                               autoFocus={true} onChange={handleInputChange}/>}
                                 </div>
 
                                 <div className='item-wrapp'>
                                     <div className='item'>
                                         <div className='calendar'>
                                             <img src={calendar} style={{cursor: 'default'}} alt='calendar'/>
-                                            <p>Коли?</p>
+                                            <p>{data.date}</p>
                                         </div>
                                         <img src={arrow} alt='arrow' onClick={() => toggleInputs(2)}/>
                                     </div>
-                                    {showInputs[2] && <input type='text' className='input' placeholder='Дата відправлення' autoFocus={true}/>}
+                                    {showInputs[2] &&
+                                        <input type='date' name='date' className='input' placeholder='Дата відправлення'
+                                               autoFocus={true} onChange={handleInputChange}/>}
                                 </div>
 
                                 <div className='item-wrapp'>
                                     <div className='item'>
-                                        <p>1 пасажир</p>
+                                        <p>{data.passenger} пасажир</p>
                                         <img src={arrow} alt='arrow' onClick={() => toggleInputs(3)}/>
                                     </div>
-                                    {showInputs[3] && <input type='text' className='input' placeholder='Кількість пасажирів' autoFocus={true}/>}
+                                    {showInputs[3] &&
+                                        <input type='number' name='passenger' className='input'
+                                               placeholder='Кількість пасажирів'
+                                               autoFocus={true} onChange={handleInputChange}/>}
                                 </div>
                             </div>
 
-                            <button className='book-button go' style={{display: 'flex'}}>Поїхали</button>
+                            <button className='book-button go' style={{display: 'flex'}} onClick={resetData}>Поїхали
+                            </button>
                         </div>
 
                         <div className='fishki'>
@@ -172,8 +209,6 @@ function Home() {
             </div>
 
 
-
-
             <div className='main-container-mobile'>
                 <div className='header-mobile'>
                     <div className='header-top-menu'>
@@ -205,39 +240,46 @@ function Home() {
 
                         <div className='item-wrapp-mobile'>
                             <div className='item-mobile'>
-                                <p>Звідки?</p>
+                                <p>{data.from}</p>
                                 <img src={arrow} alt='arrow' onClick={() => toggleInputs(0)}/>
                             </div>
-                            {showInputs[0] && <input type='text' className='input' placeholder='Пункт відправлення' autoFocus={true}/>}
+                            {showInputs[0] &&
+                                <input type='text' name='from' className='input' placeholder='Пункт відправлення'
+                                       autoFocus={true} onChange={handleInputChange}/>}
                         </div>
 
                         <div className='item-wrapp-mobile'>
                             <div className='item-mobile'>
-                                <p>Куди?</p>
+                                <p>{data.to}</p>
                                 <img src={arrow} alt='arrow' onClick={() => toggleInputs(1)}/>
                             </div>
-                            {showInputs[1] && <input type='text' className='input' placeholder='Пункт призначення' autoFocus={true}/>}
+                            {showInputs[1] &&
+                                <input type='text' name='to' className='input' placeholder='Пункт призначення'
+                                       autoFocus={true} onChange={handleInputChange}/>}
                         </div>
 
                         <div className='item-wrapp-mobile'>
                             <div className='item-mobile'>
-                                <p>Коли?</p>
+                                <p>{data.date}</p>
                                 <img src={calendar} alt='calendar' onClick={() => toggleInputs(2)}/>
                             </div>
-                            {showInputs[2] && <input type='text' className='input' placeholder='Дата відправлення' autoFocus={true}/>}
+                            {showInputs[2] &&
+                                <input type='date' name='date' className='input' placeholder='Дата відправлення'
+                                       autoFocus={true} onChange={handleInputChange}/>}
                         </div>
 
                         <div className='item-wrapp-mobile'>
                             <div className='item-mobile'>
-                                <p>1 пасажир</p>
+                                <p>{data.passenger} пасажир</p>
                                 <img src={arrow} alt='arrow' onClick={() => toggleInputs(3)}/>
                             </div>
-                            {showInputs[3] && <input type='text' className='input' placeholder='Кількість пасажирів' autoFocus={true}/>}
+                            {showInputs[3] &&
+                                <input type='number' name='passenger' className='input' placeholder='Кількість пасажирів'
+                                       autoFocus={true} onChange={handleInputChange}/>}
                         </div>
-
                     </div>
 
-                    <button className='button-mobile'>Поїхали</button>
+                    <button className='button-mobile' onClick={resetData}>Поїхали</button>
                 </div>
 
                 <div className='main-mobile-fishka'>
